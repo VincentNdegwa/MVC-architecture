@@ -13,10 +13,10 @@ session_start();
 </head>
 
 <body>
-    <?php if (isset($_SESSION['message'])) { ?>
+    <?php if (isset($_SESSION['error'])) { ?>
         <div class="text-display">
-            <?php if (!empty($_SESSION['message'])) { ?>
-                <p style="color: green;"><?php echo $_SESSION['message'] ?></p>
+            <?php if (!empty($_SESSION['error'])) { ?>
+                <p style="color: red;"><?php echo $_SESSION['error'] ?></p>
             <?php } ?>
         </div>
     <?php } ?>

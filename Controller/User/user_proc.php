@@ -21,5 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'Login') {
         $obj = (object)$_POST;
+        if ($user->read($obj)) {
+            $_SESSION['data'] = $user->returnedData;
+            header("Location: ../../View/home.php");
+        } else {
+            header("Location: ../../View/login.php");
+            return false;
+        }
     }
 }

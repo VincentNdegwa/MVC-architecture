@@ -21,6 +21,7 @@ form {
 .text-display {
   position: absolute;
   top: 0.1em;
+  right: 0;
   width: 15em;
   height: 60px;
   background-color: white;

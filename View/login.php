@@ -13,10 +13,10 @@ session_start();
 </head>
 
 <body>
-    <?php if (isset($_SESSION['message'])) { ?>
+    <?php if (isset($_SESSION['error'])) { ?>
         <div class="text-display">
-            <?php if (!empty($_SESSION['message'])) { ?>
-                <p style="color: green;"><?php echo $_SESSION['message'] ?></p>
+            <?php if (!empty($_SESSION['error'])) { ?>
+                <p style="color: red;"><?php echo $_SESSION['error'] ?></p>
             <?php } ?>
         </div>
     <?php } ?>
@@ -31,8 +31,8 @@ session_start();
         </div>
 
         <div class="mt-3">
-            <label class="col-sm-2 col-form-label">Age</label>
-            <input class="form-control form-control-sm" type="number" name="age" placeholder="6">
+            <!-- <label class="col-sm-2 col-form-label">Age</label> -->
+            <input class="form-control form-control-sm" type="hidden" name="age" value="20" placeholder="6">
         </div>
 
         <div class="mt-3">
@@ -43,7 +43,7 @@ session_start();
             <input type="submit" name="action" value="Login" class="mt-2">
         </div>
 
-        <a href="register.php" class="mt-4" >Don't have an account?</a>
+        <a href="register.php" class="mt-4">Don't have an account?</a>
 
     </form>
 </body>

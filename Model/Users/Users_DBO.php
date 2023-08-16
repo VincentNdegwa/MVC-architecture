@@ -10,6 +10,8 @@ class UserDBO
     public $error;
     public $message;
     public $stmt;
+    public $returnedData;
+    public $numbOfRows;
 
     public function __construct()
     {
@@ -36,6 +38,29 @@ class UserDBO
             return true;
         } catch (PDOException $th) {
             $this->message = "";
+            $this->error = $th->getMessage();
+            return false;
+        }
+    }
+
+    public function select($obj)
+    {
+        $this->query = "SELECT * FROM users WHERE name = :name AND password = :password";
+        try {
+            $this->stmt = $this->conn->prepare($this->query);
+            $this->stmt->bindParam(":name", $obj->name);
+            $this->stmt->bindParam(":password", md5($obj->password));
+            $this->stmt->execute();
+            $this->returnedData = $this->stmt->fetch(PDO::FETCH_OBJ);
+            if ($this->returnedData !== false) {
+                $this->message = "Dear $obj->name you successfully logged in";
+                $this->numbOfRows = $this->stmt->rowCount();
+                return $this->returnedData;
+            } else {
+                $this->error = "User $obj->name not found";
+                return false;
+            }
+        } catch (PDOException $th) {
             $this->error = $th->getMessage();
             return false;
         }
