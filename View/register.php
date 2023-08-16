@@ -21,8 +21,7 @@ session_start();
         </div>
     <?php } ?>
 
-    <h1 class="text-page">Login</h1>
-
+    <h1 class="text-page">Register</h1>
     <form action="../Controller/User/user_proc.php" method="post" class="form-control">
 
         <div class="mt-3">
@@ -40,11 +39,13 @@ session_start();
             <input class="form-control form-control-sm" name="password" type="text">
         </div>
         <div class="mt-3">
-            <input type="submit" name="action" value="Login" class="mt-2">
+            <label class="col-sm-2 col-form-label">Conf-Password</label>
+            <input class="form-control form-control-sm" name="confpassword" type="text">
         </div>
-
-        <a href="register.php" class="mt-4" >Don't have an account?</a>
-
+        <div class="mt-3">
+            <input type="submit" name="action" value="Register" class="mt-2">
+        </div>
+        <a href="login.php" class="mt-4">Have an account?</a>
     </form>
 </body>
 <script src="../Functions/main.js"></script>

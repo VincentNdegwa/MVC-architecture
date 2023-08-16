@@ -1,5 +1,6 @@
 <?php
 include("../../db.php");
+session_start();
 class UserDBO
 {
 
@@ -7,6 +8,7 @@ class UserDBO
     public $conn;
     public $lastInsertId;
     public $error;
+    public $message;
     public $stmt;
 
     public function __construct()
@@ -14,10 +16,10 @@ class UserDBO
         $db = new Connection();
         $this->conn = $db->conn;
         if (!$this->conn) {
-            $this->error="failed to connect";
+            $this->error = "failed to connect";
         }
     }
-    
+
     public function insert($obj)
     {
         $this->query = "INSERT INTO users(name,age,password)VALUES(:name,:age,:password)";
@@ -30,8 +32,10 @@ class UserDBO
 
             $this->stmt->execute();
             $this->lastInsertId = $this->conn->lastInsertId();
+            $this->message = "Dear $obj->name you successfully logged in";
             return true;
         } catch (PDOException $th) {
+            $this->message = "";
             $this->error = $th->getMessage();
             return false;
         }
